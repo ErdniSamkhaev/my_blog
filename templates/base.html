@@ -1,6 +1,14 @@
-<!-- base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'posts/css/styles.css' %}">
+    <title></title>
+</head>
 <body>
     {% include "includes/navbar.html" %}
     {% block content %}
     {% endblock %}
+    <script src="{% static 'posts/js/posts.js' %}"></script>
 </body>
+</html>

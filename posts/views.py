@@ -4,6 +4,10 @@ from .models import Post
 from django.http.response import HttpResponse
 
 
+def welcome(request):
+    return render(request, 'posts/welcome.html')
+
+
 def post_list(request):
     """Представление для отображения списка постов"""
     posts = Post.objects.all()
@@ -23,8 +27,6 @@ def create_post(request):
 
 def all_list_posts(request):
     return HttpResponse(request, 'posts/all_list_posts.html')
-
-
 
 
 @login_required

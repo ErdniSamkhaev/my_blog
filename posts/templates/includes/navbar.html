@@ -1,7 +1,4 @@
 <nav>
-    <a href={% url "posts-index"%}>Главная</a> |
+    <a href={% url "welcome"%}>Главная</a> |
     <a href="https://www.twitch.tv/just_erdni">Источник</a>
-    {% for zodiac in zodiacs %}
-    | <a href="{% url 'first-name' sign_zodiac=zodiac %}">{{ zodiac|title }}</a>
-        {% endfor %}
 </nav>
