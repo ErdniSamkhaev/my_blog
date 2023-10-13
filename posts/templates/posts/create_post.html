@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="Ru">
+<head>
+    <title>Create Post</title>
+</head>
+<body>
+    <h1>Create a New Post</h1>
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="text" placeholder="Enter your post"></textarea>
+        <button type="submit">Create Post</button>
+    </form>
+</body>
+</html>
