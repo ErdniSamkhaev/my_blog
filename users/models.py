@@ -12,6 +12,5 @@ class Profile(AbstractUser):
     telegram_url = models.URLField(blank=True)
     followers = models.ManyToManyField('self', related_name='following', blank=True, symmetrical=False)
 
-
     def __str__(self):
         return self.username
