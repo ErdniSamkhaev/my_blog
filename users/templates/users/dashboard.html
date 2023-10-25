@@ -1,11 +1,43 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Личный кабинет</title>
-</head>
-<body>
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+    <div class="dashboard-background">
+        <h1>Мой Блог</h1>
+        <p>Добро пожаловать, {{ profile.username }}</p>
+
+        {% if profile.avatar %}
+            <img src="{{ profile.avatar.url }}" alt="Аватар" width="100">
+        {% else %}
+            <img src="{% static 'users/img/tiago.jpg' %}" alt="Аватар" width="100">
+        {% endif %}
+
+        <p>Дата рождения: {{ profile.date_of_birth }}</p>
+        <p>Телефон: {{ profile.phone_number }}</p>
+        <p>О себе: {{ profile.biography }}</p>
+
+        <!-- Секция для отображения постов -->
+        {% for post in posts %}
+            <h2>{{ post.text }}</h2>
+        {% endfor %}
+
+        <!-- Форма для создания нового поста -->
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Создать пост</button>
+        </form>
+    </div>
+    <div class="posts">
+    {% for post in posts %}
+        <div class="post">
+            <h2>{{ post.text }}</h2>
+            <!-- Кнопки для редактирования и удаления -->
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block head_extra %}
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+{% endblock %}

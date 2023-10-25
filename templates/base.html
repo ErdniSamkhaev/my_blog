@@ -3,8 +3,15 @@
 <html lang="ru">
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'posts/css/styles.css' %}">
+     {% block head_extra %}{% endblock %}
+    <style>
+        body {
+            background-size: cover;
+        }
+    </style>
     <title></title>
 </head>
+
 <body>
     {% include "includes/navbar.html" %}
     {% block content %}

@@ -1,7 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+
+from posts.forms import PostForm
+from posts.models import Post
 from .forms import UserRegistrationForm, UserLoginForm
+from .models import Profile
 
 
 def register(request):
@@ -29,5 +33,16 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-    return render(request, 'users/dashboard.html')
+    posts = Post.objects.filter(author=request.user)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('dashboard')
+    else:
+        form = PostForm()
+
+    return render(request, 'users/dashboard.html', {'form': form, 'posts': posts})
 

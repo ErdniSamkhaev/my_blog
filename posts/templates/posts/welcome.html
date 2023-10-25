@@ -6,10 +6,10 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Добро пожаловать на мой блог!</h1>
+    <h1 class="welcome_h1">Добро пожаловать!</h1>
 
     <div class="container">
-        <img class="responsive-image" src="{% static 'posts/img/anuja-tilj-Zm9BY5T7Ui0-unsplash.jpg' %}"
+        <img class="responsive-image" src="{% static 'posts/img/glavnaya.jpg' %}"
              alt="Описание изображения">
         <div class="overlay">
             <div class="auth-buttons">
@@ -25,7 +25,8 @@
                                     <form class="flip-card__form" action="{% url 'login' %}" method="post">
                                         {% csrf_token %}
                                         <input class="flip-card__input" name="username" placeholder="Username" type="text">
-                                        <input class="flip-card__input" name="password" placeholder="Password" type="password">
+                                        <input class="flip-card__input" id="passwordInput1" name="password" placeholder="Password" type="password">
+                                        <span toggle="#passwordInput1" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                                         <button class="flip-card__btn">Let's go!</button>
                                     </form>
                                 </div>
@@ -46,15 +47,5 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="carousel">
-        <img id="carouselImg" src="" alt="Изображения">
-    </div>
-
-    <!-- Блок для популярных постов -->
-    <div class="popular-posts">
-        <h2>Популярные посты</h2>
-        <!-- Здесь будут посты -->
     </div>
 {% endblock %}

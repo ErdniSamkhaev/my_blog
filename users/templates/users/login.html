@@ -1,10 +1,31 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+    {% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'users/css/style.css' %}">
+{% endblock %}
   <h2>Login</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-  </form>
+  <div class="container">
+      <img class="responsive-image" src="{% static 'posts/img/glavnaya.jpg' %}" alt="">
+        <div class="auth-buttons">
+            <div class="wrapper">
+                <div class="card-switch">
+                    <div class="title">Log in</div>
+                    <form class="flip-card__form" action="{% url 'login' %}" method="post">
+                        {% csrf_token %}
+                        <label>
+                            <input class="flip-card__input" name="username" placeholder="Username" type="text">
+                        </label>
+                        <label>
+                            <input class="flip-card__input" id="passwordInput2" name="password" placeholder="Password" type="password">
+                            <span toggle="#passwordInput2" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        </label>
+                        <button class="flip-card__btn">Let's go!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+  </div>
+    <script src="{% static 'users/js/users.js' %}"></script>
 {% endblock %}

@@ -5,11 +5,13 @@ from django.http.response import HttpResponse
 
 
 def welcome(request):
+    """Представление для демонстрации приветственной страницы. Рендеринг."""
     return render(request, 'posts/welcome.html')
 
 
 def post_list(request):
-    """Представление для отображения списка постов"""
+    """Функция представления для отображения всех постов. Извлекает все объекты Post из базы данных и передает их в
+    шаблон."""
     posts = Post.objects.all()
     return render(request, 'posts/post_list.html', {'posts': posts})
 
@@ -17,12 +19,8 @@ def post_list(request):
 @login_required
 def create_post(request):
     if request.method == 'POST':
-        # Process the post creation
-        # ...
         return redirect('posts')
     return render(request, 'posts/create_post.html')
-
-# Add other views for like, dislike, profile editing, etc.
 
 
 def all_list_posts(request):
